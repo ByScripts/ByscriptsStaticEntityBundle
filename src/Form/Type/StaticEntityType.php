@@ -15,11 +15,12 @@ class StaticEntityType extends AbstractType
     {
         $resolver->setDefaults(
             [
+                'function' => 'getAll',
                 'property' => 'name',
                 'group_by' => null,
                 'choice_list' => function (Options $options) {
                     return new ObjectChoiceList(
-                        StaticEntity::getAll($options['class']),
+                        $options['class']::$options['function'](),
                         $options['property'],
                         $options['preferred_choices'],
                         $options['group_by'],
@@ -29,7 +30,7 @@ class StaticEntityType extends AbstractType
             ]
         );
         $resolver->setRequired(['class']);
-        $resolver->setOptional(['property', 'group_by']);
+        $resolver->setOptional(['function', 'property', 'group_by']);
     }
 
     public function getParent()
