@@ -1,0 +1,10 @@
+parameters:
+    kernel.secret: secret_enough_for_testing
+
+framework:
+    test: ~
+    form: ~
+    router:
+        resource: %kernel.root_dir%/routing.yml
+    templating:
+        engines: ['php']
