@@ -17,6 +17,17 @@
         </testsuite>
     </testsuites>
 
+    <filter>
+        <whitelist>
+            <directory>tests</directory>
+            <exclude>
+                <directory>tests/Fixtures/app</directory>
+                <file>tests/bootstrap.php</file>
+                <file>tests/Fixtures/src/ByscriptsStaticEntityTestBundle.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+
     <php>
         <server name="KERNEL_DIR" value="tests/Fixtures/app"/>
     </php>
