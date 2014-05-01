@@ -47,7 +47,5 @@ class TestController extends Controller
     public function formTypeWithoutClassAction()
     {
         $this->createForm('form')->add('civility', 'static_entity');
-
-        return new Response();
     }
 }
