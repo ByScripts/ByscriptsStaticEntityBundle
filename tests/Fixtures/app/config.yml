@@ -4,6 +4,7 @@ parameters:
 framework:
     test: ~
     form: ~
+    csrf_protection: false
     router:
         resource: %kernel.root_dir%/routing.yml
     templating:
