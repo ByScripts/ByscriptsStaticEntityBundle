@@ -23,29 +23,28 @@ class TestController extends Controller
 {
     public function paramConverterAction(Civility $civility = null)
     {
-        return new Response(null === $civility ? 'no-civility' : $civility->getName());
+        return new Response(null === $civility ? 'null' : $civility->getName());
     }
 
-    public function formTypeAction()
+    public function formTypeAction($testSkipClass = false)
     {
+        $options = array();
+
+        if (!$testSkipClass) {
+            $options['class'] = 'Byscripts\BundleTest\StaticEntityBundle\StaticEntity\Civility';
+        }
+
         $form = $this
             ->createForm('form')
             ->add(
                 'civility',
                 'static_entity',
-                array(
-                    'class' => 'Byscripts\BundleTest\StaticEntityBundle\StaticEntity\Civility'
-                )
+                $options
             );
 
         return $this->render(
             'ByscriptsStaticEntityTestBundle:Test:formType.html.php',
             array('form' => $form->createView())
         );
-    }
-
-    public function formTypeWithoutClassAction()
-    {
-        $this->createForm('form')->add('civility', 'static_entity');
     }
 }

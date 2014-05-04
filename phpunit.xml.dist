@@ -12,20 +12,17 @@
         strict="false"
         verbose="false">
     <testsuites>
-        <testsuite name="Byscripts Static Entity Bundle test suite$">
+        <testsuite name="Byscripts Static Entity Bundle test suite">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
-        <whitelist>
-            <directory>tests</directory>
-            <exclude>
-                <directory>tests/Fixtures/app</directory>
-                <file>tests/bootstrap.php</file>
-                <file>tests/Fixtures/src/ByscriptsStaticEntityTestBundle.php</file>
-            </exclude>
-        </whitelist>
+        <blacklist>
+            <directory>tests/Fixtures/app</directory>
+            <directory>vendor</directory>
+            <directory>/tmp/ByscriptsStaticEntityBundle</directory>
+        </blacklist>
     </filter>
 
     <php>
