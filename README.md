@@ -6,15 +6,15 @@ If you just need to use StaticEntity, and don't need the FormType and ParamConve
 
 You can use StaticEntity in your project like any other library.
 
-**This 1.x branch supports SensioFrameworkBundle 2.x (Used by Symfony 2.3)**
+**This 1.x branch supports SensioFrameworkBundle 2.x (Used by Symfony 2.3 Standard Edition)**
 
-For support of SensioFrameworkBundle 3.x (Used by Symfony 2.4+), use the 2.x branch
+For support of SensioFrameworkBundle 3.x (Used by Symfony 2.4+ Standard Edition), use the 2.x branch
 
 ## Installation
 
 ### Add the package in your composer.json
 
-At command line, run `composer require byscripts/static-entity-bundle:~2.0`
+At command line, run `composer require byscripts/static-entity-bundle:~1.0`
 
 ### Enable the Bundle
 
