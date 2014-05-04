@@ -12,26 +12,41 @@ class StaticEntityParamConverter implements ParamConverterInterface
     /**
      * Stores the object in the request.
      *
-     * @param Request                                                                                                                                   $request       The request
+     * @param Request        $request       The request
      * @param ParamConverter $configuration Contains the name, class and options of the object
      *
-     * @return boolean True if the object has been successfully set, else false
+     * @return bool|void
+     * @throws \Exception
      */
     function apply(Request $request, ParamConverter $configuration)
     {
         $paramName = $configuration->getName();
 
-        if(!$request->attributes->has($paramName)) {
-            return;
+        if (!$request->attributes->has($paramName)) {
+            return false;
+        }
+
+        $staticEntity = call_user_func(
+            array($configuration->getClass(), 'get'),
+            $request->attributes->get($paramName)
+        );
+
+        if (null === $staticEntity) {
+            throw new \Exception(
+                sprintf(
+                    'Static entity not found "%s" with id "%s"',
+                    $configuration->getClass(),
+                    $request->attributes->get($paramName)
+                )
+            );
         }
 
         $request->attributes->set(
             $paramName,
-            call_user_func(
-                array($configuration->getClass(), 'get'),
-                $request->attributes->get($paramName)
-            )
+            $staticEntity
         );
+
+        return true;
     }
 
     /**
