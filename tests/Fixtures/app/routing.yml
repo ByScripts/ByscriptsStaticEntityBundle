@@ -8,10 +8,16 @@ param-converter-default:
         _controller: 'ByscriptsStaticEntityTestBundle:Test:paramConverter'
         civility: 'mrs'
 
+param-converter-no-attribute:
+    path: /test/param-converter-no-attribute
+    defaults: { _controller: 'ByscriptsStaticEntityTestBundle:Test:paramConverter' }
+
 form-type:
     path: /test/form-type
     defaults: { _controller: 'ByscriptsStaticEntityTestBundle:Test:formType' }
 
 form-type-without-class:
     path: /test/form-type-without-class
-    defaults: { _controller: 'ByscriptsStaticEntityTestBundle:Test:formTypeWithoutClass' }
+    defaults:
+        _controller: 'ByscriptsStaticEntityTestBundle:Test:formType'
+        testSkipClass: true

@@ -30,13 +30,23 @@ class StaticEntityTest extends WebTestCase
         );
     }
 
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage Static entity not found
+     */
     public function testParamConverterBad()
     {
         $client  = static::createClient();
-        $crawler = $client->request('GET', '/test/param-converter/non-existent-id');
+        $client->request('GET', '/test/param-converter/non-existent-id');
+    }
+
+    public function testParamConverterNoAttribute()
+    {
+        $client  = static::createClient();
+        $crawler = $client->request('GET', '/test/param-converter-no-attribute');
 
         $this->assertEquals(
-            'no-civility',
+            'null',
             $crawler->text()
         );
     }

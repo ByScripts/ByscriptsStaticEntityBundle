@@ -53,6 +53,8 @@ class AppKernel extends \Symfony\Component\HttpKernel\Kernel
 
     public function getLogDir()
     {
-        return sys_get_temp_dir() . '/ByscriptsStaticEntityBundle/logs';
+        return sys_get_temp_dir() . '/ByscriptsStaticEntityBundle/cache';
     }
+
+
 }
