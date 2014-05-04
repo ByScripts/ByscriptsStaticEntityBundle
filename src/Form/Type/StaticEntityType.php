@@ -20,7 +20,7 @@ class StaticEntityType extends AbstractType
                 'group_by' => null,
                 'choice_list' => function (Options $options) {
                     return new ObjectChoiceList(
-                        $options['class']::$options['function'](),
+                        call_user_func(array($options['class'], $options['function'])),
                         $options['property'],
                         $options['preferred_choices'],
                         $options['group_by'],
