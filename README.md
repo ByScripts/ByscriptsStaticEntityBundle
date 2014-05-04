@@ -6,9 +6,9 @@ If you just need to use StaticEntity, and don't need the FormType and ParamConve
 
 You can use StaticEntity in your project like any other library.
 
-**This 1.x branch supports SensioFrameworkBundle 2.x (Used by Symfony 2.3)**
+**This 2.x branch supports SensioFrameworkBundle 3.x (Used by Symfony 2.4+)**
 
-For support of SensioFrameworkBundle 3.x (Used by Symfony 2.4+), use the 2.x branch
+For support of SensioFrameworkBundle 2.x (Used by Symfony 2.3), use the 1.x branch
 
 ## Installation
 
