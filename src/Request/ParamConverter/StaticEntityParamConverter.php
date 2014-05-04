@@ -3,7 +3,7 @@
 
 namespace Byscripts\Bundle\StaticEntityBundle\Request\ParamConverter;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -13,12 +13,12 @@ class StaticEntityParamConverter implements ParamConverterInterface
      * Stores the object in the request.
      *
      * @param Request                                                                                                                                   $request       The request
-     * @param ConfigurationInterface $configuration Contains the name, class and options of the object
+     * @param ParamConverter $configuration Contains the name, class and options of the object
      *
      * @return bool|void
      * @throws \Exception
      */
-    function apply(Request $request, ConfigurationInterface $configuration)
+    function apply(Request $request, ParamConverter $configuration)
     {
         $paramName = $configuration->getName();
 
@@ -52,11 +52,11 @@ class StaticEntityParamConverter implements ParamConverterInterface
     /**
      * Checks if the object is supported.
      *
-     * @param ConfigurationInterface $configuration Should be an instance of ParamConverter
+     * @param ParamConverter $configuration Should be an instance of ParamConverter
      *
      * @return boolean True if the object is supported, else false
      */
-    function supports(ConfigurationInterface $configuration)
+    function supports(ParamConverter $configuration)
     {
         return is_subclass_of($configuration->getClass(), 'Byscripts\StaticEntity\StaticEntity');
     }
