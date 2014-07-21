@@ -26,9 +26,15 @@ class StaticEntityParamConverter implements ParamConverterInterface
             return false;
         }
 
+        $value = $request->attributes->get($paramName);
+
+        if(null === $value) {
+            return true;
+        }
+
         $staticEntity = call_user_func(
             array($configuration->getClass(), 'get'),
-            $request->attributes->get($paramName)
+            $value
         );
 
         if (null === $staticEntity) {
@@ -36,7 +42,7 @@ class StaticEntityParamConverter implements ParamConverterInterface
                 sprintf(
                     'Static entity not found "%s" with id "%s"',
                     $configuration->getClass(),
-                    $request->attributes->get($paramName)
+                    $value
                 )
             );
         }
