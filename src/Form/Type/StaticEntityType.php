@@ -7,21 +7,25 @@ use Byscripts\StaticEntity\StaticEntity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class StaticEntityType extends AbstractType
 {
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             [
                 'function' => 'getAll',
-                'property' => 'name',
+                'choice_label' => 'name',
                 'group_by' => null,
                 'choice_list' => function (Options $options) {
                     return new ObjectChoiceList(
                         call_user_func(array($options['class'], $options['function'])),
-                        $options['property'],
+                        $options['choice_label'],
                         $options['preferred_choices'],
                         $options['group_by'],
                         'id'
@@ -29,8 +33,8 @@ class StaticEntityType extends AbstractType
                 }
             ]
         );
-        $resolver->setRequired(['class']);
-        $resolver->setOptional(['function', 'property', 'group_by']);
+        $resolver->setRequired('class');
+        $resolver->setDefined(['function', 'choice_label', 'group_by']);
     }
 
     public function getParent()
