@@ -1,6 +1,6 @@
 # Byscripts Static Entity Bundle
 
-This bundle brings ParamConverter and FormType supports to Symfony 2 for the [StaticEntity library](https://github.com/ByScripts/ByscriptsStaticEntity).
+This bundle brings ParamConverter and FormType supports to Symfony 3 for the [StaticEntity library](https://github.com/ByScripts/ByscriptsStaticEntity).
 
 If you just need to use StaticEntity, and don't need the FormType and ParamConverter support, then this bundle is NOT required.
 
@@ -26,12 +26,12 @@ Add `Byscripts\Bundle\StaticEntityBundle\ByscriptsStaticEntityBundle` to the `ap
 
 ### Create a static entity
 
-First, create a static entity on your project (for example, in `src/YourVendorName/YourBundle/StaticEntity`)
+First, create a static entity on your project (for example, in `src/AppBundle/StaticEntity`)
 
 ```php
 <?php
 
-namespace YourVendorName\YourBundle\StaticEntity;
+namespace AppBundle\StaticEntity;
 
 use Byscripts\StaticEntity\StaticEntity;
 
