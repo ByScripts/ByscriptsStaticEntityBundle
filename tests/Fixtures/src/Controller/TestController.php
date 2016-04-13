@@ -10,8 +10,10 @@
 
 namespace Byscripts\BundleTest\StaticEntityBundle\Controller;
 
+use Byscripts\Bundle\StaticEntityBundle\Form\Type\StaticEntityType;
 use Byscripts\BundleTest\StaticEntityBundle\StaticEntity\Civility;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -35,10 +37,10 @@ class TestController extends Controller
         }
 
         $form = $this
-            ->createForm('form')
+            ->createForm(FormType::class)
             ->add(
                 'civility',
-                'static_entity',
+                StaticEntityType::class,
                 $options
             );
 
