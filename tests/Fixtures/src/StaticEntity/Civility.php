@@ -6,18 +6,26 @@ use Byscripts\StaticEntity\StaticEntity;
 
 class Civility extends StaticEntity
 {
+    const MR = 'mr';
+    const MRS = 'mrs';
+    /**
+     * @var string
+     */
     private $name;
 
+    /**
+     * @return array
+     */
     static public function getDataSet()
     {
         return array(
-            'mr'  => array('name' => 'Mister'),
-            'mrs' => array('name' => 'Misses'),
+            self::MR  => array('name' => 'Mister'),
+            self::MRS => array('name' => 'Misses'),
         );
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
