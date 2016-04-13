@@ -2,7 +2,7 @@
     "name": "byscripts/static-entity-bundle",
     "type": "symfony-bundle",
     "minimum-stability": "stable",
-    "description": "Add Symfony2 ParamConverter and FormType to StaticEntity",
+    "description": "Add Symfony3 ParamConverter and FormType to StaticEntity",
     "license": "MIT",
     "authors": [
         {
@@ -40,7 +40,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0-dev"
+            "dev-master": "4.0-dev"
         }
     }
 }
