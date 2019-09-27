@@ -11,9 +11,10 @@
 namespace Byscripts\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 
 /**
- * Class FooTest
+ * Class StaticEntityTest
  *
  * @author Thierry Goettelmann <thierry@byscripts.info>
  */
@@ -21,7 +22,7 @@ class StaticEntityTest extends WebTestCase
 {
     public function testParamConverter()
     {
-        $client  = static::createClient();
+        $client = static::createClient();
         $crawler = $client->request('GET', '/test/param-converter/mr');
 
         $this->assertEquals(
@@ -30,19 +31,18 @@ class StaticEntityTest extends WebTestCase
         );
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Static entity not found
-     */
     public function testParamConverterBad()
     {
-        $client  = static::createClient();
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Static entity not found');
+
+        $client = static::createClient();
         $client->request('GET', '/test/param-converter/non-existent-id');
     }
 
     public function testParamConverterNoAttribute()
     {
-        $client  = static::createClient();
+        $client = static::createClient();
         $crawler = $client->request('GET', '/test/param-converter-no-attribute');
 
         $this->assertEquals(
@@ -53,7 +53,7 @@ class StaticEntityTest extends WebTestCase
 
     public function testParamConverterDefaultValue()
     {
-        $client  = static::createClient();
+        $client = static::createClient();
         $crawler = $client->request('GET', '/test/param-converter-default');
 
         $this->assertEquals(
@@ -66,16 +66,17 @@ class StaticEntityTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/test/form-type');
-        $this->assertEquals('MisterMisses', $crawler->filterXPath('html/body/form/div//select')->text());
+        $content = $crawler->filterXPath('html/body/form/div//select')->text();
+        $this->assertStringContainsString('Mister', $content);
+        $this->assertStringContainsString('Misses', $content);
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\MissingOptionsException
-     * @expectedExceptionMessage required option "class" is missing
-     */
     public function testFormTypeWithoutClass()
     {
-            $client = static::createClient();
-            $client->request('GET', '/test/form-type-without-class');
+        $this->expectException(MissingOptionsException::class);
+        $this->expectExceptionMessage('required option "class" is missing');
+
+        $client = static::createClient();
+        $client->request('GET', '/test/form-type-without-class');
     }
 }

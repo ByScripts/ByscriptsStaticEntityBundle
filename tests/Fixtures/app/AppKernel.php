@@ -8,40 +8,46 @@
  * file that was distributed with this source code.
  */
 
+namespace Byscripts\AppTest;
+
+use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
+
 /**
  * Class AppKernel
  *
  * @author Thierry Goettelmann <thierry@byscripts.info>
  */
-class AppKernel extends \Symfony\Component\HttpKernel\Kernel
+class AppKernel extends Kernel
 {
 
     /**
      * Returns an array of bundles to register.
      *
-     * @return \Symfony\Component\HttpKernel\Bundle\BundleInterface[] An array of bundle instances.
+     * @return BundleInterface[] An array of bundle instances.
      *
      * @api
      */
     public function registerBundles()
     {
         return array(
-            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+            new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new \Byscripts\Bundle\StaticEntityBundle\ByscriptsStaticEntityBundle(),
             new \Byscripts\BundleTest\StaticEntityBundle\ByscriptsStaticEntityTestBundle(),
-            new Symfony\Bundle\TwigBundle\TwigBundle(),
+            new \Symfony\Bundle\TwigBundle\TwigBundle(),
         );
     }
 
     /**
      * Loads the container configuration.
      *
-     * @param \Symfony\Component\Config\Loader\LoaderInterface $loader A LoaderInterface instance
+     * @param LoaderInterface $loader A LoaderInterface instance
      *
      * @api
      */
-    public function registerContainerConfiguration(\Symfony\Component\Config\Loader\LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__ . '/config.yml');
     }

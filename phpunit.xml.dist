@@ -17,14 +17,13 @@
     </testsuites>
 
     <filter>
-        <blacklist>
-            <directory>tests/Fixtures/app</directory>
-            <directory>vendor</directory>
-            <directory>/tmp/ByscriptsStaticEntityBundle</directory>
-        </blacklist>
+        <whitelist>
+            <directory>src</directory>
+            <directory>tests/Fixtures/src</directory>
+        </whitelist>
     </filter>
 
     <php>
-        <server name="KERNEL_DIR" value="tests/Fixtures/app"/>
+        <server name="KERNEL_CLASS" value="Byscripts\AppTest\AppKernel"/>
     </php>
 </phpunit>

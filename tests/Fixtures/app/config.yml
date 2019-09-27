@@ -1,11 +1,11 @@
 parameters:
-    kernel.secret: secret_enough_for_testing
+    kernel.secret: 'secret_enough_for_testing'
 
 framework:
     test: ~
     form: ~
     csrf_protection: false
     router:
-        resource: %kernel.root_dir%/routing.yml
+        resource: "%kernel.root_dir%/routing.yml"
     templating:
         engines: ['php']
