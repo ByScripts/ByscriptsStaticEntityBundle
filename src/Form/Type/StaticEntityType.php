@@ -18,6 +18,7 @@ class StaticEntityType extends AbstractType
             [
                 'function' => 'getAll',
                 'choice_label' => 'name',
+                'choice_value' => 'id',
             ]
         );
         $resolver->setRequired('class');
